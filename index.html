@@ -4,10 +4,10 @@
 	<title>Tic Toc Tac</title>
 	<script type="text/javascript">
 		var cnt = 0;
-		var symbol = "";		
+		var symbol = "";			
 
 		function insert(id) {
-			var c = document.getElementById(id).value;
+			var c = document.getElementById(id).textContent;
 			if (cnt%2 == 0) {
 				symbol = "X";
 			} 
@@ -15,19 +15,49 @@
 				symbol = "O";
 			};
 
-			if (c == "X" || c == "O") {
+			if (c != "") {
 				return;
 			};
-			cnt++;			
+			cnt++;	
 			document.getElementById(id).innerHTML = symbol;
 
-			if (winGame(id)) {
-				alert('Gameover');
+			if (winGame()) {
+				alert('Game over');
 			};
 		};
 
-		function winGame(id) {
+		function winGame() {
 
+			var c1 = document.getElementById("btn1").textContent;
+			var c2 = document.getElementById("btn2").textContent;
+			var c3 = document.getElementById("btn3").textContent;
+			var c4 = document.getElementById("btn4").textContent;
+			var c5 = document.getElementById("btn5").textContent;
+			var c6 = document.getElementById("btn6").textContent;
+			var c7 = document.getElementById("btn7").textContent;
+			var c8 = document.getElementById("btn8").textContent;
+			var c9 = document.getElementById("btn9").textContent;	
+
+			var board = [[c1, c2, c3], [c4, c5, c6], [c7, c8, c9]];
+
+
+			for (let i = 0; i < 3; i++) {
+				if (board[i][0] == board[i][1] &&  board[i][1] == board[i][2] && board[i][0] != "") {
+					return true;
+				};
+
+				if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != "") {
+					return true;
+				};
+			};
+
+			if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != "") {
+				return true;
+			};
+
+			if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != "") {
+				return true;
+			}
 		};
 
 	</script>
@@ -36,11 +66,15 @@
 		button	{
 			width: 150px;
 			height: 150px;
-			background: #9bbff5;
+			background: #4db8ff;
 			font-size: 100px;
 			border: none;
-			color: #1200ff;
+			color: #003d66;
 			padding: 15px 30px;
+		}
+
+		button:hover {
+			background-color: #1aa3ff
 		}
 	</style>
 </head>
